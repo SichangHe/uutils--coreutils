@@ -239,6 +239,15 @@ fn test_lines_leading_zeros() {
         .stdout_is("\n\n\n\n\n\n\n\n\n\n");
 }
 
+#[test]
+fn test_zero_suffixed_byte_count() {
+    new_ucmd!()
+        .arg("--bytes=0K")
+        .pipe_in("0123456789")
+        .succeeds()
+        .no_output();
+}
+
 /// Test that each non-existent files gets its own error message printed.
 #[test]
 fn test_multiple_nonexistent_files() {
